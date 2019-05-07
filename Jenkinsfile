@@ -1,9 +1,10 @@
 pipeline{
-  agent { label 'nodejs8' }
+  agent { label 'nodejs10' }
   stages{
     stage ('checkout'){
-      steps{
-        checkout scm
+      steps {
+        deleteDir()
+        retry(3) { checkout scm }
       }
     }
     stage ('install modules'){
