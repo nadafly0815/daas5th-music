@@ -2,20 +2,23 @@ pipeline {
 	agent any
 
 	stages {
-		stage('Preparation') {
+		stage('checkout') {
 			steps {
+			  echo "checkout!"
         deleteDir()
         retry(3) { checkout scm }
 			}
 		}
-		stage ('Delivery') {
+		stage ('install modules') {
 			steps {
         echo "Delivery!"
+        npm install
 			}
 		}
-		stage('Deploy') {
+		stage('test') {
 			steps {
-        echo "Deploy!"
+        echo "test!"
+        $(npm bin)/ng test --single-run --browsers Chrome_no_sandbox
 			}
 		}
 		stage('Cleanup') {
