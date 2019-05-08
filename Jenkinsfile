@@ -4,7 +4,8 @@ pipeline {
 	stages {
 		stage('Preparation') {
 			steps {
-			    cleanWs()
+        deleteDir()
+        retry(3) { checkout scm }
 			}
 		}
 		stage ('Delivery') {
