@@ -3,45 +3,39 @@ pipeline{
   stages{
     stage ('checkout'){
       steps {
-        deleteDir()
-        retry(3) { checkout scm }
+        sh '''
+          echo "checkout!"
+        '''
       }
     }
     stage ('install modules'){
       steps{
         sh '''
-          npm install --verbose -d
-          npm install --save classlist.js
+          echo "install modules!"
         '''
       }
     }
     stage ('test'){
       steps{
         sh '''
-          $(npm bin)/ng test --single-run --browsers Chrome_no_sandbox
+          echo "test!"
         '''
-      }
-      post {
-        always {
-          junit "test-results.xml"
-        }
       }
     }
     stage ('code quality'){
       steps{
-        sh '$(npm bin)/ng lint'
+          echo "code quality!"
       }
     }
     stage ('build') {
       steps{
-        sh '$(npm bin)/ng build --prod --build-optimizer'
+          echo "build!"
       }
     }
     stage ('build image') {
       steps{
         sh '''
-          rm -rf node_modules
-          oc start-build angular-5-example --from-dir=. --follow
+          echo "build image!"
         '''
       }
     }
