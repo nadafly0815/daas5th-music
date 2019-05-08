@@ -18,7 +18,6 @@ pipeline {
 		stage('test') {
 			steps {
         echo "test!"
-        $(npm bin)/ng test --single-run --browsers Chrome_no_sandbox
 			}
 		}
 		stage('Cleanup') {
