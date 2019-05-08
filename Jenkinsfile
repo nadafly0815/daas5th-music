@@ -19,7 +19,8 @@ pipeline {
 		}
 		stage('Cleanup') {
 			steps {
-
+      }
 		}
 	}
 }
+
