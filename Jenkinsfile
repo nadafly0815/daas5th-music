@@ -11,19 +11,11 @@ pipeline {
 		}
 		stage ('install modules') {
 			steps {
-        echo "Delivery!"
-        npm install
+        echo "install modules!"
+          sh '''
+            npm install
+          '''
 			}
-		}
-		stage('test') {
-			steps {
-        echo "test!"
-			}
-		}
-		stage('Cleanup') {
-			steps {
-        echo "Cleanup!"
-      }
 		}
 	}
 }
